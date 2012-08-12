@@ -1,0 +1,1 @@
+<a class="view-link" href="$Link" target="_blank">View</a>
