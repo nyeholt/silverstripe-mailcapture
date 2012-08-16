@@ -8,6 +8,20 @@
  */
 class CaptureMailer extends Mailer {
 	
+	/**
+	 * Do we capture emails in the system?
+	 * 
+	 * @var type 
+	 */
+	public static $capture_emails = true;
+	
+	/**
+	 * Do we use the 'parent' send functionality to actually send emails out of the system?
+	 * 
+	 * @var type 
+	 */
+	public static $outbound_send = false;
+	
 	protected $send;
 	
 	public function setMassMailSend($item) {
@@ -17,24 +31,30 @@ class CaptureMailer extends Mailer {
 	/**
 	 */
 	function sendPlain($to, $from, $subject, $plainContent, $attachedFiles = false, $customHeaders = false) {
-		$mail = new CapturedEmail();
-		$mail->To = $to;
-		$mail->From = $from;
-		$mail->Subject = $subject;
-	
-		if (is_array($customHeaders)) {
-			foreach ($customHeaders as $header => $val) {
-				$mail->Headers .= "$header: $val \n";
+		if (self::$capture_emails) {
+			$mail = new CapturedEmail();
+			$mail->To = $to;
+			$mail->From = $from;
+			$mail->Subject = $subject;
+
+			if (is_array($customHeaders)) {
+				foreach ($customHeaders as $header => $val) {
+					$mail->Headers .= "$header: $val \n";
+				}
 			}
+
+			$mail->PlainText = $plainContent;
+
+			if ($this->send) {
+				$mail->SendID = $this->send->ID;
+			}
+
+			$mail->write();
 		}
 		
-		$mail->PlainText = $plainContent;
-		
-		if ($this->send) {
-			$mail->SendID = $this->send->ID;
+		if (self::$outbound_send) {
+			return parent::sendPlain($to, $from, $subject, $plainContent, $attachedFiles, $customheaders);
 		}
-		
-		$mail->write();
 		
 		return true;
 	}
@@ -44,26 +64,32 @@ class CaptureMailer extends Mailer {
 	 * TestMailer will merely record that the email was asked to be sent, without sending anything.
 	 */
 	function sendHTML($to, $from, $subject, $htmlContent, $attachedFiles = false, $customHeaders = false, $plainContent = false, $inlineImages = false) {
-		$mail = new CapturedEmail();
-		$mail->To = $to;
-		$mail->From = $from;
-		$mail->Subject = $subject;
-	
-		if (is_array($customHeaders)) {
-			foreach ($customHeaders as $header => $val) {
-				$mail->Headers .= "$header: $val \n";
+		if (self::$capture_emails) {
+			$mail = new CapturedEmail();
+			$mail->To = $to;
+			$mail->From = $from;
+			$mail->Subject = $subject;
+
+			if (is_array($customHeaders)) {
+				foreach ($customHeaders as $header => $val) {
+					$mail->Headers .= "$header: $val \n";
+				}
 			}
-		}
-		
-		$mail->Content = $htmlContent;
-		$mail->PlainText = $plainContent;
-		
-		if ($this->send) {
-			$mail->SendID = $this->send->ID;
+
+			$mail->Content = $htmlContent;
+			$mail->PlainText = $plainContent;
+
+			if ($this->send) {
+				$mail->SendID = $this->send->ID;
+			}
+
+			$mail->write();
 		}
 
-		$mail->write();
-		
+		if (self::$outbound_send) {
+			return parent::sendHTML($to, $from, $subject, $htmlContent, $attachedFiles, $customheaders, $plainContent, $inlineImages);
+		}
+
 		return true;
 	}
 }
