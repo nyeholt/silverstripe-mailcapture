@@ -19,6 +19,12 @@ class CapturedEmail extends DataObject {
 	);
 	
 	public static $summary_fields = array(
+		'Created',
+		'Subject',
+		'To',
+		'From'
+	);
+	public static $searchable_fields = array(
 		'Subject',
 		'To',
 		'From'
