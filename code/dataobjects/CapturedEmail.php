@@ -31,4 +31,27 @@ class CapturedEmail extends DataObject {
 	);
 	
 	public static $default_sort = 'ID DESC';
+
+
+	public function canDelete() {
+		return false;
+	}
+	
+	public function canEdit() {
+		return false;
+	}
+
+	public function canView() {
+		return Permission::check('CMS_ACCESS_MailCaptureAdmin');
+	}
+	
+	public function getCMSFields($params = null) {
+		$fields = parent::getCMSFields($params);
+		
+		$link = Controller::join_links('CapturedEmailController', 'view', $this->ID);
+		
+		$fields->addFieldToTab('Root.Main', new LiteralField('PreviewEmail', '<a target="_blank" href="' . $link . '">View this email as sent</a>'), 'To');
+		
+		return $fields;
+	}
 }

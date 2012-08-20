@@ -12,7 +12,7 @@ class CapturedEmailController extends Controller {
 		$id = (int) $this->getRequest()->param('ID');
 		
 		if ($id) {
-			$email = DataList::create('CapturedEmail')->byID($id);
+			$email = DataObject::get_by_id('CapturedEmail', $id);
 			if ($email) {
 				return array('Email' => $email);
 				return $this->customise()->renderWith('CapturedEmailController_view');
