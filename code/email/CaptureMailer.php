@@ -87,7 +87,7 @@ class CaptureMailer extends Mailer {
 		}
 
 		if (self::$outbound_send) {
-			return parent::sendHTML($to, $from, $subject, $htmlContent, $attachedFiles, $customheaders, $plainContent, $inlineImages);
+			return parent::sendHTML($to, $from, $subject, $htmlContent, $attachedFiles, $customHeaders, $plainContent, $inlineImages);
 		}
 
 		return true;

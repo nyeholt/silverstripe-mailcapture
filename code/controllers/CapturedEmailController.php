@@ -8,6 +8,8 @@
  */
 class CapturedEmailController extends Controller {
 	
+	private static $allowed_actions = array('view');
+	
 	public function view() {
 		$id = (int) $this->getRequest()->param('ID');
 		
