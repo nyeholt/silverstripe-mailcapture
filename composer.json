@@ -1,0 +1,16 @@
+{
+	"name": "silverstripe-australia/mailcapture",
+	"description": "A module for development/staging systems that capture email within the repository instead of actually sending to a user. These emails can then be browsed within the CMS.",
+	"type": "silverstripe-module",
+	"keywords": ["silverstripe", "email", "mail"],
+	"license": "BSD-3-Clause",
+	"authors": [
+		{
+			"name": "Marcus Nyeholt",
+			"email": "marcus@silverstripe.com.au"
+		}
+	],
+	"require": {
+		"silverstripe/framework": "3.1.*"
+	}
+}
