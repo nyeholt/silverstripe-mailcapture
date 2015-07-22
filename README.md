@@ -12,6 +12,6 @@ desireable to have these emails actually go out to the recipients
 * Place module in your SilverStripe root directory
 * Run dev/build
 * Add the following line to your mysite/\_config.php file.
-  * Email::set\_mailer(new MailCaptureMailer())
+  * Email::set\_mailer(new CaptureMailer())
 
 
