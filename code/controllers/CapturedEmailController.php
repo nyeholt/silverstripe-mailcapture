@@ -7,12 +7,12 @@
  * @license BSD License http://silverstripe.org/bsd-license/
  */
 class CapturedEmailController extends Controller {
-	
+
 	private static $allowed_actions = array('view');
-	
+
 	public function view() {
 		$id = (int) $this->getRequest()->param('ID');
-		
+
 		if ($id) {
 			$email = DataList::create('CapturedEmail')->byID($id);
 			if ($email) {
