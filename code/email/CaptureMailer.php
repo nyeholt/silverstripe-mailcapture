@@ -63,7 +63,16 @@ class CaptureMailer extends Mailer {
 	 * Send a multi-part HTML email
 	 * TestMailer will merely record that the email was asked to be sent, without sending anything.
 	 */
-	function sendHTML($to, $from, $subject, $htmlContent, $attachedFiles = false, $customHeaders = false, $plainContent = false, $inlineImages = false) {
+	function sendHTML(
+		$to,
+		$from,
+		$subject,
+		$htmlContent,
+		$attachedFiles = false,
+		$customHeaders = false,
+		$plainContent = false,
+		$inlineImages = false
+	) {
 		if (self::$capture_emails) {
 			$mail = new CapturedEmail();
 			$mail->To = $to;
@@ -87,7 +96,16 @@ class CaptureMailer extends Mailer {
 		}
 
 		if (self::$outbound_send) {
-			return parent::sendHTML($to, $from, $subject, $htmlContent, $attachedFiles, $customHeaders, $plainContent, $inlineImages);
+			return parent::sendHTML(
+				$to,
+				$from,
+				$subject,
+				$htmlContent,
+				$attachedFiles,
+				$customHeaders,
+				$plainContent,
+				$inlineImages
+			);
 		}
 
 		return true;
