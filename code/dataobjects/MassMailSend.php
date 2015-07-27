@@ -10,13 +10,13 @@ class MassMailSend extends DataObject {
 	public static $db = array(
 		'Title'		=> 'Varchar(128)',
 	);
-	
+
 	public static $has_many = array(
 		'Emails'		=> 'CapturedEmail',
 	);
-	
+
 	public static $default_sort = 'ID DESC';
-	
+
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
 
@@ -27,7 +27,7 @@ class MassMailSend extends DataObject {
 		$gf = GridField::create('Emails', 'Sent emails', $this->Emails(), $config);
 
 		$fields->addFieldToTab('Root.Main', $gf);
-		
+
 		return $fields;
 	}
 }

@@ -17,7 +17,7 @@ class CapturedEmail extends DataObject {
 	public static $has_one = array(
 		'Send'			=> 'MassMailSend',
 	);
-	
+
 	public static $summary_fields = array(
 		'Created',
 		'Subject',
@@ -29,6 +29,6 @@ class CapturedEmail extends DataObject {
 		'To',
 		'From'
 	);
-	
+
 	public static $default_sort = 'ID DESC';
 }

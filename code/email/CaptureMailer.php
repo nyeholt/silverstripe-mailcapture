@@ -2,32 +2,32 @@
 
 /**
  * A mailer that can be used to capture emails instead of sending them out
- * 
+ *
  * @author marcus@silverstripe.com.au
  * @license BSD License http://silverstripe.org/bsd-license/
  */
 class CaptureMailer extends Mailer {
-	
+
 	/**
 	 * Do we capture emails in the system?
-	 * 
-	 * @var type 
+	 *
+	 * @var type
 	 */
 	public static $capture_emails = true;
-	
+
 	/**
 	 * Do we use the 'parent' send functionality to actually send emails out of the system?
-	 * 
-	 * @var type 
+	 *
+	 * @var type
 	 */
 	public static $outbound_send = false;
-	
+
 	protected $send;
-	
+
 	public function setMassMailSend($item) {
 		$this->send = $item;
 	}
-	
+
 	/**
 	 */
 	function sendPlain($to, $from, $subject, $plainContent, $attachedFiles = false, $customHeaders = false) {
@@ -51,14 +51,14 @@ class CaptureMailer extends Mailer {
 
 			$mail->write();
 		}
-		
+
 		if (self::$outbound_send) {
 			return parent::sendPlain($to, $from, $subject, $plainContent, $attachedFiles, $customHeaders);
 		}
-		
+
 		return true;
 	}
-	
+
 	/**
 	 * Send a multi-part HTML email
 	 * TestMailer will merely record that the email was asked to be sent, without sending anything.
