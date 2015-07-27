@@ -29,6 +29,13 @@ class CaptureMailer extends Mailer {
 	}
 
 	/**
+	 * @param string $to Email recipient
+	 * @param string $from Email from
+	 * @param string $subject Subject text
+	 * @param string $plainContent Plain text content
+	 * @param array $attachedFiles List of attached files
+	 * @param array $customHeaders List of custom headers
+	 * @return mixed Return false if failure, or list of arguments if success
 	 */
 	function sendPlain($to, $from, $subject, $plainContent, $attachedFiles = false, $customHeaders = false) {
 		if (self::$capture_emails) {
@@ -62,6 +69,15 @@ class CaptureMailer extends Mailer {
 	/**
 	 * Send a multi-part HTML email
 	 * TestMailer will merely record that the email was asked to be sent, without sending anything.
+	 *
+	 * @param string $to Email recipient
+	 * @param string $from Email from
+	 * @param string $subject Subject text
+	 * @param string $htmlContent HTML Content
+	 * @param array $attachedFiles List of attachments
+	 * @param array $customHeaders User specified headers
+	 * @param string $plainContent Plain text content. If omitted, will be generated from $htmlContent
+	 * @return mixed Return false if failure, or list of arguments if success
 	 */
 	function sendHTML(
 		$to,
