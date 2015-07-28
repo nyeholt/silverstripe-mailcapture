@@ -37,7 +37,7 @@ class CaptureMailer extends Mailer {
 	 * @param array $customHeaders List of custom headers
 	 * @return mixed Return false if failure, or list of arguments if success
 	 */
-	function sendPlain($to, $from, $subject, $plainContent, $attachedFiles = false, $customHeaders = false) {
+	public function sendPlain($to, $from, $subject, $plainContent, $attachedFiles = false, $customHeaders = false) {
 		if (self::$capture_emails) {
 			$mail = new CapturedEmail();
 			$mail->To = $to;
@@ -79,7 +79,7 @@ class CaptureMailer extends Mailer {
 	 * @param string $plainContent Plain text content. If omitted, will be generated from $htmlContent
 	 * @return mixed Return false if failure, or list of arguments if success
 	 */
-	function sendHTML(
+	public function sendHTML(
 		$to,
 		$from,
 		$subject,
