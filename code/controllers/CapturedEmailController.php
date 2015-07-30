@@ -8,7 +8,7 @@
  */
 class CapturedEmailController extends Controller {
 
-	private static $allowed_actions = array('view');
+	private static $allowed_actions = array('view' => 'CMS_ACCESS_MailCaptureAdmin');
 
 	public function view() {
 		$id = (int) $this->getRequest()->param('ID');
