@@ -6,19 +6,21 @@
  * @author marcus@silverstripe.com.au
  * @license BSD License http://silverstripe.org/bsd-license/
  */
-class CapturedEmailController extends Controller {
+class CapturedEmailController extends Controller
+{
 
-	private static $allowed_actions = array('view' => 'CMS_ACCESS_MailCaptureAdmin');
+    private static $allowed_actions = array('view' => 'CMS_ACCESS_MailCaptureAdmin');
 
-	public function view() {
-		$id = (int) $this->getRequest()->param('ID');
+    public function view()
+    {
+        $id = (int) $this->getRequest()->param('ID');
 
-		if ($id) {
-			$email = DataList::create('CapturedEmail')->byID($id);
-			if ($email) {
-				return array('Email' => $email);
-				return $this->customise()->renderWith('CapturedEmailController_view');
-			}
-		}
-	}
+        if ($id) {
+            $email = DataList::create('CapturedEmail')->byID($id);
+            if ($email) {
+                return array('Email' => $email);
+                return $this->customise()->renderWith('CapturedEmailController_view');
+            }
+        }
+    }
 }
