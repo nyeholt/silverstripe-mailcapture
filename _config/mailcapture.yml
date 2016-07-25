@@ -1,0 +1,10 @@
+---
+Name: mailcapture
+---
+Injector:
+  CaptureMailer:
+    outbound_send: false
+    properties:
+      outboundMailer: %$MailerObject
+  MailerObject:
+    class: Mailer

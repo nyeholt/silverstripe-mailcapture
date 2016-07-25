@@ -6,4 +6,4 @@
 // to stop capturing emails, add
 // CaptureMailer::$capture_emails = false
 
-Email::set_mailer(new CaptureMailer());
+Email::set_mailer(CaptureMailer::create());
