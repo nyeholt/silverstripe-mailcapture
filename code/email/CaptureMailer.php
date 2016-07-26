@@ -15,13 +15,6 @@ class CaptureMailer extends Mailer {
 	 */
 	private static $capture_emails = true;
 
-	/**
-	 * Do we use the 'parent' send functionality to actually send emails out of the system?
-	 *
-	 * @var type
-	 */
-	private static $outbound_send = false;
-
 	public $outboundMailer;
 
 	protected $send;
@@ -61,7 +54,7 @@ class CaptureMailer extends Mailer {
 			$mail->write();
 		}
 
-		if ($this->config()->outbound_send) {
+		if ($this->outboundMailer) {
 			return $this->outboundMailer->sendPlain(
 				$to,
 				$from,
@@ -120,7 +113,7 @@ class CaptureMailer extends Mailer {
 			$mail->write();
 		}
 
-		if ($this->config()->outbound_send) {
+		if ($this->outboundMailer) {
 			return $this->outboundMailer->sendHTML(
 				$to,
 				$from,
