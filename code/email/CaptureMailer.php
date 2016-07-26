@@ -13,7 +13,7 @@ class CaptureMailer extends Mailer {
 	 *
 	 * @var type
 	 */
-	private static $capture_emails = true;
+	public $capture_emails = true;
 
 	public $outboundMailer;
 
@@ -33,7 +33,7 @@ class CaptureMailer extends Mailer {
 	 * @return mixed Return false if failure, or list of arguments if success
 	 */
 	public function sendPlain($to, $from, $subject, $plainContent, $attachedFiles = false, $customHeaders = false) {
-		if (self::$capture_emails) {
+		if ($this->capture_emails) {
 			$mail = new CapturedEmail();
 			$mail->To = $to;
 			$mail->From = $from;
@@ -91,7 +91,7 @@ class CaptureMailer extends Mailer {
 		$plainContent = false,
 		$inlineImages = false
 	) {
-		if (self::$capture_emails) {
+		if ($this->capture_emails) {
 			$mail = new CapturedEmail();
 			$mail->To = $to;
 			$mail->From = $from;
