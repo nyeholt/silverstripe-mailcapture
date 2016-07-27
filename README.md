@@ -5,13 +5,23 @@ by users in the CMS directly.
 
 Useful for sites that are in development (or on test/staging servers) where
 users need to be able to use functionality that sends emails, but it is not
-desireable to have these emails actually go out to the recipients
+desirable to have these emails actually go out to the recipients.
 
-## Installation
+This module defaults to not sending emails, but supports sending via an out
+bound mailer, this is configured via yml, e.g:
 
-* Place module in your SilverStripe root directory
-* Run dev/build
-* Add the following line to your mysite/\_config.php file.
-  * Email::set\_mailer(new CaptureMailer())
-
-
+```yml
+---
+Name: mymailcapture
+after: mailcapture
+---
+Injector:
+  Mailer:
+    class: CaptureMailer
+    properties:
+      outboundMailer: %$MailerObject
+      #Set to false to enable pass through of emails without logging
+      captureEmails: FALSE
+  MailerObject:
+    class: Mailer
+```
