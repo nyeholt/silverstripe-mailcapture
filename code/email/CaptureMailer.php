@@ -11,18 +11,36 @@ class CaptureMailer extends Mailer {
 	/**
 	 * Do we capture emails in the system?
 	 *
-	 * @var type
+	 * @var boolean
 	 */
-	public static $capture_emails = true;
+	public $captureEmails = true;
 
 	/**
-	 * Do we use the 'parent' send functionality to actually send emails out of the system?
+	 * Mailer or a sub-class of Mailer that can be used for sending the captured emails
 	 *
-	 * @var type
+	 * @var Object
 	 */
-	public static $outbound_send = false;
+	public $outboundMailer;
 
 	protected $send;
+
+	/**
+	 * Legacy fields we check on in __constructor and throw an exception if they are set to a value other than null
+	 *
+	 * @var null
+	 */
+	private static $capture_emails;
+	private static $outbound_send;
+
+	public function __construct() {
+		if (self::$outbound_send !== null || self::$capture_emails !== null) {
+			user_error('Mailcapture no longer uses private statics for config, please remove any settings of '
+				. 'private static $capture_emails and private static $outbound_send. Check the read for new yml based '
+				. 'config');
+		}
+
+		parent::__construct();
+	}
 
 	public function setMassMailSend($item) {
 		$this->send = $item;
@@ -38,7 +56,7 @@ class CaptureMailer extends Mailer {
 	 * @return mixed Return false if failure, or list of arguments if success
 	 */
 	public function sendPlain($to, $from, $subject, $plainContent, $attachedFiles = false, $customHeaders = false) {
-		if (self::$capture_emails) {
+		if ($this->captureEmails) {
 			$mail = new CapturedEmail();
 			$mail->To = $to;
 			$mail->From = $from;
@@ -59,8 +77,15 @@ class CaptureMailer extends Mailer {
 			$mail->write();
 		}
 
-		if (self::$outbound_send) {
-			return parent::sendPlain($to, $from, $subject, $plainContent, $attachedFiles, $customHeaders);
+		if ($this->outboundMailer) {
+			return $this->outboundMailer->sendPlain(
+				$to,
+				$from,
+				$subject,
+				$plainContent,
+				$attachedFiles,
+				$customHeaders
+			);
 		}
 
 		return true;
@@ -89,7 +114,7 @@ class CaptureMailer extends Mailer {
 		$plainContent = false,
 		$inlineImages = false
 	) {
-		if (self::$capture_emails) {
+		if ($this->captureEmails) {
 			$mail = new CapturedEmail();
 			$mail->To = $to;
 			$mail->From = $from;
@@ -111,8 +136,8 @@ class CaptureMailer extends Mailer {
 			$mail->write();
 		}
 
-		if (self::$outbound_send) {
-			return parent::sendHTML(
+		if ($this->outboundMailer) {
+			return $this->outboundMailer->sendHTML(
 				$to,
 				$from,
 				$subject,

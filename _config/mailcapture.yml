@@ -1,0 +1,12 @@
+---
+Name: mailcapture
+---
+Injector:
+  Mailer:
+    class: CaptureMailer
+#    properties:
+#      outboundMailer: %$MailerObject
+#      #Set to false to enable pass through of emails without logging
+#      captureEmails: TRUE
+#  MailerObject:
+#    class: Mailer
