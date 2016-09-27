@@ -1,0 +1,7 @@
+---
+Name: mysiteroutes
+After: framework/routes#coreroutes
+---
+Director:
+    rules:
+        'CapturedEmailController//$ID' : 'CapturedEmailController'
