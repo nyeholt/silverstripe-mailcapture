@@ -1,5 +1,5 @@
 ---
-Name: mysiteroutes
+Name: mailcaptureroutes
 After: framework/routes#coreroutes
 ---
 Director:
