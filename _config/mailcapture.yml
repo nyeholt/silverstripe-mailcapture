@@ -10,3 +10,7 @@ Injector:
 #      captureEmails: TRUE
 #  MailerObject:
 #    class: Mailer
+
+Director:
+  rules:
+    'CapturedEmailController': 'CapturedEmailController'
