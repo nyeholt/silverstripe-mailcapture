@@ -25,3 +25,11 @@ Injector:
   MailerObject:
     class: Mailer
 ```
+
+# Using on Silverstripe 3.1
+
+Due to API breakages between 3.1 and 3.2, you must add the following line
+to your config to override the Mailer:
+```php
+Email::set_mailer(Injector::inst()->get('Mailer'));
+```
