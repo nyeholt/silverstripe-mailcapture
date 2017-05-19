@@ -1,0 +1,7 @@
+---
+Name: mailcaptureroutes
+After: framework/routes#coreroutes
+---
+Director:
+    rules:
+        'CapturedEmailController//$ID' : 'CapturedEmailController'
