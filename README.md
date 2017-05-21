@@ -1,5 +1,7 @@
 # SilverStripe Mail Capture module
 
+[![Build Status](https://travis-ci.org/nyeholt/silverstripe-mailcapture.svg?branch=master)](https://travis-ci.org/nyeholt/silverstripe-mailcapture)
+
 A module for capturing outbound emails in data objects that can then be viewed
 by users in the CMS directly. 
 
@@ -20,7 +22,7 @@ Injector:
     class: CaptureMailer
     properties:
       outboundMailer: %$MailerObject
-      #Set to false to enable pass through of emails without logging
+      # Set to false to enable pass through of emails without logging
       captureEmails: FALSE
   MailerObject:
     class: Mailer
