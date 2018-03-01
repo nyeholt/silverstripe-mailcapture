@@ -34,7 +34,7 @@ class CapturedEmail extends DataObject {
 
     public function canView($member = null)
     {
-        if (!$member || !(is_a($member, 'Member')) || is_numeric($member)) {
+        if (!$member || !($member instanceof Member) || is_numeric($member)) {
             $member = Member::currentUser();
         }
         if ($member && Permission::checkMember($member, array("ADMIN", "CMS_ACCESS_MailCaptureAdmin"))) {
