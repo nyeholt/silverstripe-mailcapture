@@ -6,9 +6,15 @@
  * @author marcus@silverstripe.com.au
  * @license BSD License http://silverstripe.org/bsd-license/
  */
-class CapturedEmailController extends Controller {
+class CapturedEmailController extends Controller implements PermissionProvider {
 
 	private static $allowed_actions = array('view' => 'CMS_ACCESS_MailCaptureAdmin');
+
+    public function providePermissions(){
+		return array(
+			'CMS_ACCESS_MailCaptureAdmin' => 'View MailCapture records'
+		);
+	}
 
 	public function view() {
 		$id = (int) $this->getRequest()->param('ID');

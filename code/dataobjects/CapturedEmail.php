@@ -31,4 +31,16 @@ class CapturedEmail extends DataObject {
 	);
 
 	public static $default_sort = 'ID DESC';
+
+    public function canView($member = null)
+    {
+        if (!$member || !($member instanceof Member) || is_numeric($member)) {
+            $member = Member::currentUser();
+        }
+        if ($member && Permission::checkMember($member, array("ADMIN", "CMS_ACCESS_MailCaptureAdmin"))) {
+            return true;
+        }
+
+        return parent::canView($member);
+    }
 }
