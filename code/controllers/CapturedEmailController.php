@@ -23,7 +23,6 @@ class CapturedEmailController extends Controller implements PermissionProvider {
 			$email = DataList::create('CapturedEmail')->byID($id);
 			if ($email) {
 				return array('Email' => $email);
-				return $this->customise()->renderWith('CapturedEmailController_view');
 			}
 		}
 	}
