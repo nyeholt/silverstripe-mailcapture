@@ -9,7 +9,7 @@ class PruneEmailsTask extends BuildTask {
 		if (Permission::check('ADMIN')) {
 			$since = date('Y-m-d H:i:s', strtotime('-1 month'));
 			$list = CapturedEmail::get()->filter('Created:LessThan', $since);
-			echo "Deleting " . $list->count() . " captured emails (if confirm flag set)<br/>\n";
+			echo "Deleting " . $list->count() . " captured emails (if ?confirm get var is set)<br/>\n";
 
 			if ($request->getVar('confirm')) {
 				$list->removeAll();
