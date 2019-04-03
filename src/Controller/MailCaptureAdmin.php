@@ -1,5 +1,10 @@
 <?php
 
+namespace Symbiote\MailCapture\Controller;
+
+use SilverStripe\Admin\ModelAdmin;
+use Symbiote\MailCapture\Form\ViewEmailButton;
+
 /**
  * @author marcus@silverstripe.com.au
  * @license BSD License http://silverstripe.org/bsd-license/

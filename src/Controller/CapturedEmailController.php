@@ -1,5 +1,11 @@
 <?php
 
+namespace Symbiote\MailCapture\Controller;
+
+use SilverStripe\Control\Controller;
+use SilverStripe\ORM\DataList;
+use SilverStripe\Security\PermissionProvider;
+
 /**
  * Controller for viewing a previously captured email as the client would see it
  *
