@@ -29,24 +29,6 @@ class CaptureMailer extends SwiftMailer {
 
 	protected $send;
 
-	/**
-	 * Legacy fields we check on in __constructor and throw an exception if they are set to a value other than null
-	 *
-	 * @var null
-	 */
-	private static $capture_emails;
-	private static $outbound_send;
-
-	public function __construct() {
-		if (self::$outbound_send !== null || self::$capture_emails !== null) {
-			user_error('Mailcapture no longer uses private statics for config, please remove any settings of '
-				. 'private static $capture_emails and private static $outbound_send. Check the read for new yml based '
-				. 'config');
-		}
-
-		parent::__construct();
-	}
-
 	public function setMassMailSend($item) {
 		$this->send = $item;
 	}
