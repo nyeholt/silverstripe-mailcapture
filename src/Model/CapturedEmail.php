@@ -5,6 +5,7 @@ namespace Symbiote\MailCapture\Model;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Security\Member;
 use SilverStripe\Security\Permission;
+use Symbiote\MailCapture\Model\MassMailSend;
 
 /**
  * @author marcus@silverstripe.com.au
@@ -21,7 +22,7 @@ class CapturedEmail extends DataObject {
 	);
 
 	private static $has_one = array(
-		'Send'			=> 'MassMailSend',
+		'Send'			=> MassMailSend::class,
 	);
 
 	private static $summary_fields = array(

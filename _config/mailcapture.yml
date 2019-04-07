@@ -11,6 +11,6 @@ Injector:
 #  MailerObject:
 #    class: Mailer
 
-Director:
+SilverStripe\Control\Director:
   rules:
-    'CapturedEmailController': 'CapturedEmailController'
+    'CapturedEmailController': 'Symbiote\MailCapture\Controller\CapturedEmailController'

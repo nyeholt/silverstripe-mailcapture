@@ -8,6 +8,7 @@ use SilverStripe\Forms\GridField\GridFieldConfig_Base;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\View\ArrayData;
 use Symbiote\MailCapture\Form\ViewEmailButton;
+use Symbiote\MailCapture\Model\CapturedEmail;
 
 /**
  * A way of grouping many emails under a single banner
@@ -21,7 +22,7 @@ class MassMailSend extends DataObject {
 	);
 
 	private static $has_many = array(
-		'Emails'		=> 'CapturedEmail',
+		'Emails'		=> CapturedEmail::class,
 	);
 
 	private static $default_sort = 'ID DESC';

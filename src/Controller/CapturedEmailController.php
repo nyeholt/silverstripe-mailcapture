@@ -5,6 +5,7 @@ namespace Symbiote\MailCapture\Controller;
 use SilverStripe\Control\Controller;
 use SilverStripe\ORM\DataList;
 use SilverStripe\Security\PermissionProvider;
+use Symbiote\MailCapture\Model\CapturedEmail;
 
 /**
  * Controller for viewing a previously captured email as the client would see it
@@ -26,7 +27,7 @@ class CapturedEmailController extends Controller implements PermissionProvider {
 		$id = (int) $this->getRequest()->param('ID');
 
 		if ($id) {
-			$email = DataList::create('CapturedEmail')->byID($id);
+			$email = DataList::create(CapturedEmail::class)->byID($id);
 			if ($email) {
 				return array('Email' => $email);
 			}
