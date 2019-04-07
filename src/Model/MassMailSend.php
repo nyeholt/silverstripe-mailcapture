@@ -2,11 +2,9 @@
 
 namespace Symbiote\MailCapture\Model;
 
-use SilverStripe\Control\Controller;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridFieldConfig_Base;
 use SilverStripe\ORM\DataObject;
-use SilverStripe\View\ArrayData;
 use Symbiote\MailCapture\Form\ViewEmailButton;
 use Symbiote\MailCapture\Model\CapturedEmail;
 
