@@ -12,6 +12,9 @@ use Symbiote\MailCapture\Model\MassMailSend;
  * @license BSD License http://silverstripe.org/bsd-license/
  */
 class CapturedEmail extends DataObject {
+
+    private static $table_name = 'CapturedEmail';
+
 	private static $db = array(
 		'To'			=> 'Varchar(128)',
 		'From'			=> 'Varchar(128)',
