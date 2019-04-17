@@ -18,7 +18,7 @@ class CaptureMailer extends SwiftMailer {
 	 *
 	 * @var boolean
 	 */
-	public $captureEmails = true;
+	public $recordEmails = true;
 
 	/**
 	 * Mailer or a sub-class of Mailer that can be used for sending the captured emails
@@ -39,7 +39,7 @@ class CaptureMailer extends SwiftMailer {
      */
     public function send($message)
     {
-        if ($this->captureEmails) {
+        if ($this->recordEmails) {
 
             $formatEmailAddress = function (array $emails): string
             {

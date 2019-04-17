@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/nyeholt/silverstripe-mailcapture.svg?branch=master)](https://travis-ci.org/nyeholt/silverstripe-mailcapture)
 
 A module for capturing outbound emails in data objects that can then be viewed
-by users in the CMS directly. 
+by users in the CMS directly.
 
 Useful for sites that are in development (or on test/staging servers) where
 users need to be able to use functionality that sends emails, but it is not
@@ -17,21 +17,12 @@ bound mailer, this is configured via yml, e.g:
 Name: mymailcapture
 after: mailcapture
 ---
-Injector:
-  Mailer:
-    class: CaptureMailer
+SilverStripe\Core\Injector\Injector:
+  SilverStripe\Control\Email\Mailer:
+    class: Symbiote\MailCapture\Control\Email\CaptureMailer
     properties:
-      outboundMailer: %$MailerObject
-      # Set to false to enable pass through of emails without logging
-      captureEmails: FALSE
-  MailerObject:
-    class: Mailer
-```
-
-# Using on Silverstripe 3.1
-
-Due to API breakages between 3.1 and 3.2, you must add the following line
-to your config to override the Mailer:
-```php
-Email::set_mailer(Injector::inst()->get('Mailer'));
+     # Set to FALSE to enable pass through of emails without logging
+      recordEmails: TRUE
+     # Set to TRUE to send emails, uses the configured SwiftMailer
+      sendMailOutbound: TRUE
 ```
