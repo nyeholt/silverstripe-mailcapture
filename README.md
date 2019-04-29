@@ -26,3 +26,63 @@ SilverStripe\Core\Injector\Injector:
      # Set to TRUE to send emails, uses the configured SwiftMailer
       sendMailOutbound: TRUE
 ```
+
+## Composer Install
+
+**[SilverStripe 3.X](https://github.com/symbiote/silverstripe-mailcapture/tree/2)**
+```
+composer require symbiote/silverstripe-mailcapture:~2.0
+```
+
+**[SilverStripe 4.X](https://github.com/symbiote/silverstripe-mailcapture/tree/master)**
+```
+composer require symbiote/silverstripe-mailcapture:~3.0
+```
+
+## Requirements
+
+* PHP 7.0+
+* SilverStripe 4.0+
+
+## Breaking Changes
+
+When upgrading from SilverStripe 3.x to SilverStripe 4.x, the yml file has changed syntax and function.
+As an example this yml configure would record a copy of each email and use the default Mailer object to send emails
+over SMTP:
+
+```yml
+---
+Name: mymailcapture
+after: mailcapture
+---
+Injector:
+  Mailer:
+    class: CaptureMailer
+    properties:
+      outboundMailer: %$MailerObject
+      # Set to false to enable pass through of emails without logging
+      captureEmails: TRUE
+  MailerObject:
+    class: Mailer
+```
+
+The same functionality in the new syntax looks like this:
+
+```yml
+---
+Name: mymailcapture
+after: mailcapture
+---
+SilverStripe\Core\Injector\Injector:
+  SilverStripe\Control\Email\Mailer:
+    class: Symbiote\MailCapture\Control\Email\CaptureMailer
+    properties:
+     # Set to FALSE to enable pass through of emails without logging
+      recordEmails: TRUE
+     # Set to TRUE to send emails, uses the configured SwiftMailer
+      sendMailOutbound: TRUE
+```
+
+`captureEmails` is now `recordEmails` this removes the ambiguous capture word making the intent of the setting clearer.
+`outboundMailer` is no longer used as the CaptureMailer classes instead uses the SwiftMailer transport that is
+configured for the site. To enable sending of emails externally we set `sendMailOutbound`.
