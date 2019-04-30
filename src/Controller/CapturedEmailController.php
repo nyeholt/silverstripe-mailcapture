@@ -27,7 +27,7 @@ class CapturedEmailController extends Controller implements PermissionProvider {
 		$id = (int) $this->getRequest()->param('ID');
 
 		if ($id) {
-			$email = DataList::create(CapturedEmail::class)->byID($id);
+			$email = CapturedEmail::get()->byID($id);
 			if ($email) {
 				return array('Email' => $email);
 			}

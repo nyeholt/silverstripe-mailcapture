@@ -54,7 +54,7 @@ class CaptureMailer extends SwiftMailer {
                 return $return;
             };
 
-			$mail = new CapturedEmail();
+			$mail = CapturedEmail::create();
 			$mail->To = $formatEmailAddress($message->getTo());
 			$mail->From = $formatEmailAddress($message->getFrom());
 			$mail->ReplyTo = $message->getReplyTo();
