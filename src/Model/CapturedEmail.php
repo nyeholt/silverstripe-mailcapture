@@ -1,11 +1,21 @@
 <?php
 
+namespace Symbiote\MailCapture\Model;
+
+use SilverStripe\ORM\DataObject;
+use SilverStripe\Security\Member;
+use SilverStripe\Security\Permission;
+use Symbiote\MailCapture\Model\MassMailSend;
+
 /**
  * @author marcus@silverstripe.com.au
  * @license BSD License http://silverstripe.org/bsd-license/
  */
 class CapturedEmail extends DataObject {
-	public static $db = array(
+
+    private static $table_name = 'CapturedEmail';
+
+	private static $db = array(
 		'To'			=> 'Varchar(128)',
 		'From'			=> 'Varchar(128)',
 		'Subject'		=> 'Varchar(128)',
@@ -14,23 +24,23 @@ class CapturedEmail extends DataObject {
 		'PlainText'		=> 'Text',
 	);
 
-	public static $has_one = array(
-		'Send'			=> 'MassMailSend',
+	private static $has_one = array(
+		'Send'			=> MassMailSend::class,
 	);
 
-	public static $summary_fields = array(
+	private static $summary_fields = array(
 		'Created',
 		'Subject',
 		'To',
 		'From'
 	);
-	public static $searchable_fields = array(
+	private static $searchable_fields = array(
 		'Subject',
 		'To',
 		'From'
 	);
 
-	public static $default_sort = 'ID DESC';
+	private static $default_sort = 'ID DESC';
 
     public function canView($member = null)
     {

@@ -1,5 +1,11 @@
 <?php
 
+namespace Symbiote\MailCapture\BuildTask;
+
+use SilverStripe\Dev\BuildTask;
+use SilverStripe\Security\Permission;
+use Symbiote\MailCapture\Model\CapturedEmail;
+
 /**
  * @author <marcus@silverstripe.com.au>
  * @license BSD License http://www.silverstripe.org/bsd-license

@@ -1,16 +1,16 @@
 ---
 Name: mailcapture
+After: emailconfig
 ---
-Injector:
-  Mailer:
-    class: CaptureMailer
-#    properties:
-#      outboundMailer: %$MailerObject
-#      # Set to false to enable pass through of emails without logging
-#      captureEmails: FALSE
-#  MailerObject:
-#    class: Mailer
+SilverStripe\Core\Injector\Injector:
+  SilverStripe\Control\Email\Mailer:
+    class: Symbiote\MailCapture\Control\Email\CaptureMailer
+    properties:
+     # Set to FALSE to enable pass through of emails without logging
+      recordEmails: TRUE
+     # Set to TRUE to send emails, uses the configured SwiftMailer
+      sendMailOutbound: FALSE
 
-Director:
+SilverStripe\Control\Director:
   rules:
-    'CapturedEmailController': 'CapturedEmailController'
+    'CapturedEmailController': 'Symbiote\MailCapture\Controller\CapturedEmailController'
