@@ -61,7 +61,26 @@ class CaptureMailer extends SwiftMailer {
 			$mail->Subject = $message->getSubject();
             $mail->Headers = $message->getSwiftMessage()->getHeaders()->toString();
 
-			$mail->Content = $message->getBody();
+            // Ensure we can at least render template if any
+            $htmlTemplate = $message->getHTMLTemplate();
+            $plainTemplate = $message->getPlainTemplate();
+
+            $plainContent = $htmlContent = '';
+            // use html content with html template
+            if ($htmlTemplate) {
+                $htmlContent = $message->renderWith($htmlTemplate);
+                $mail->Content = html_entity_decode($htmlContent);
+            }
+            // use plain content with plain template
+            elseif ($plainTemplate) { {
+                $plainContent = $message->renderWith($plainTemplate);
+                $mail->PlainText = $plainContent;
+            }
+            // default to same behaviour a prior to above implementation for templates so
+            // as to not be a breaking change. We should probably decode this in the future.
+            else {
+                $mail->Content = $message->getBody();
+            }
 
 			if ($this->send) {
 				$mail->SendID = $this->send->ID;
