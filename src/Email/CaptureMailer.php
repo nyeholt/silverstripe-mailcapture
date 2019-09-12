@@ -13,25 +13,25 @@ use Symbiote\MailCapture\Model\CapturedEmail;
  */
 class CaptureMailer extends SwiftMailer {
 
-	/**
-	 * Do we capture emails in the system?
-	 *
-	 * @var boolean
-	 */
-	public $recordEmails = true;
+    /**
+     * Do we capture emails in the system?
+     *
+     * @var boolean
+     */
+    public $recordEmails = true;
 
-	/**
-	 * Mailer or a sub-class of Mailer that can be used for sending the captured emails
-	 *
-	 * @var Object
-	 */
-	public $outboundMailer;
+    /**
+     * Mailer or a sub-class of Mailer that can be used for sending the captured emails
+     *
+     * @var Object
+     */
+    public $outboundMailer;
 
-	protected $send;
+    protected $send;
 
-	public function setMassMailSend($item) {
-		$this->send = $item;
-	}
+    public function setMassMailSend($item) {
+        $this->send = $item;
+    }
 
     /**
      * @param \SilverStripe\Control\Email\Email $message
@@ -54,11 +54,11 @@ class CaptureMailer extends SwiftMailer {
                 return $return;
             };
 
-			$mail = CapturedEmail::create();
-			$mail->To = $formatEmailAddress($message->getTo());
-			$mail->From = $formatEmailAddress($message->getFrom());
-			$mail->ReplyTo = $message->getReplyTo();
-			$mail->Subject = $message->getSubject();
+            $mail = CapturedEmail::create();
+            $mail->To = $formatEmailAddress($message->getTo());
+            $mail->From = $formatEmailAddress($message->getFrom());
+            $mail->ReplyTo = $message->getReplyTo();
+            $mail->Subject = $message->getSubject();
             $mail->Headers = $message->getSwiftMessage()->getHeaders()->toString();
 
             // Ensure we can at least render template if any
@@ -72,7 +72,7 @@ class CaptureMailer extends SwiftMailer {
                 $mail->Content = html_entity_decode($htmlContent);
             }
             // use plain content with plain template
-            elseif ($plainTemplate) { {
+            elseif ($plainTemplate) {
                 $plainContent = $message->renderWith($plainTemplate);
                 $mail->PlainText = $plainContent;
             }
@@ -82,16 +82,16 @@ class CaptureMailer extends SwiftMailer {
                 $mail->Content = $message->getBody();
             }
 
-			if ($this->send) {
-				$mail->SendID = $this->send->ID;
-			}
+            if ($this->send) {
+                $mail->SendID = $this->send->ID;
+            }
 
-			$mail->write();
-		}
+            $mail->write();
+        }
 
         if ($this->sendMailOutbound) {
-			return parent::send($message);
-		}
+            return parent::send($message);
+        }
 
         return true;
     }
