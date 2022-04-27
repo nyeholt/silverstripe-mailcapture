@@ -13,4 +13,4 @@ SilverStripe\Core\Injector\Injector:
 
 SilverStripe\Control\Director:
   rules:
-    'CapturedEmailController': 'Symbiote\MailCapture\Controller\CapturedEmailController'
+    'admin/capture-email-viewer': 'Symbiote\MailCapture\Controller\CapturedEmailController'
