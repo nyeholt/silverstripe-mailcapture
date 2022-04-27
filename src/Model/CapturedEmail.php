@@ -22,6 +22,7 @@ class CapturedEmail extends DataObject {
 		'Headers'		=> 'Text',
 		'Content'		=> 'Text',
 		'PlainText'		=> 'Text',
+        'Success'       => 'Boolean',
 	);
 
 	private static $has_one = array(
