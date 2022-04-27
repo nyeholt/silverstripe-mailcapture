@@ -54,4 +54,14 @@ class CapturedEmail extends DataObject {
 
         return parent::canView($member);
     }
+
+    public function canEdit($member = null)
+    {
+        return false;
+    }
+
+    public function canDelete($member = null)
+    {
+        return false;
+    }
 }
