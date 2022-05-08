@@ -86,7 +86,7 @@ class CaptureMailer extends SwiftMailer {
                 $mail->SendID = $this->send->ID;
             }
         }
-        $success = $false;
+        $success = false;
         if ($this->sendMailOutbound) {
             $success = parent::send($message);
         }
