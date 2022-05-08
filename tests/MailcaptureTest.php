@@ -14,18 +14,18 @@ class MailcaptureTest extends SapphireTest
     protected $usesDatabase = true;
     protected $originalMailer = '';
 
-    public function setUp()
-    {
-        parent::setUp();
-        $this->originalMailer = Mailer::class;
-        Injector::inst()->registerService(CaptureMailer::class, 'Mailer');
-    }
-
-    public function tearDown()
-    {
-        Injector::inst()->registerService($this->originalMailer, 'Mailer');
-        parent::tearDown();
-    }
+    // public function setUp()
+    // {
+    //     parent::setUp();
+    //     $this->originalMailer = Mailer::class;
+    //     Injector::inst()->registerService(CaptureMailer::class, 'Mailer');
+    // }
+    //
+    // public function tearDown()
+    // {
+    //     Injector::inst()->registerService($this->originalMailer, 'Mailer');
+    //     parent::tearDown();
+    // }
 
     public function testCaptureMail()
     {
