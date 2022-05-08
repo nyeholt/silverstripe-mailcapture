@@ -11,37 +11,38 @@ use Symbiote\MailCapture\Model\MassMailSend;
  * @author marcus@silverstripe.com.au
  * @license BSD License http://silverstripe.org/bsd-license/
  */
-class CapturedEmail extends DataObject {
+class CapturedEmail extends DataObject
+{
 
     private static $table_name = 'CapturedEmail';
 
-	private static $db = array(
-		'To'			=> 'Varchar(128)',
-		'From'			=> 'Varchar(128)',
-		'Subject'		=> 'Varchar(128)',
-		'Headers'		=> 'Text',
-		'Content'		=> 'Text',
-		'PlainText'		=> 'Text',
+    private static $db = array(
+        'To'            => 'Varchar(128)',
+        'From'            => 'Varchar(128)',
+        'Subject'        => 'Varchar(128)',
+        'Headers'        => 'Text',
+        'Content'        => 'Text',
+        'PlainText'        => 'Text',
         'Success'       => 'Boolean',
-	);
+    );
 
-	private static $has_one = array(
-		'Send'			=> MassMailSend::class,
-	);
+    private static $has_one = array(
+        'Send'            => MassMailSend::class,
+    );
 
-	private static $summary_fields = array(
-		'Created',
-		'Subject',
-		'To',
-		'From'
-	);
-	private static $searchable_fields = array(
-		'Subject',
-		'To',
-		'From'
-	);
+    private static $summary_fields = array(
+        'Created',
+        'Subject',
+        'To',
+        'From'
+    );
+    private static $searchable_fields = array(
+        'Subject',
+        'To',
+        'From'
+    );
 
-	private static $default_sort = 'ID DESC';
+    private static $default_sort = 'ID DESC';
 
     public function canView($member = null)
     {

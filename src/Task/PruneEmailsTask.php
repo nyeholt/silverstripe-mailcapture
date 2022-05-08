@@ -11,15 +11,15 @@ use Symbiote\MailCapture\Model\CapturedEmail;
  * @license BSD License http://www.silverstripe.org/bsd-license
  */
 class PruneEmailsTask extends BuildTask {
-	public function run($request) {
-		if (Permission::check('ADMIN')) {
-			$since = date('Y-m-d H:i:s', strtotime('-1 month'));
-			$list = CapturedEmail::get()->filter('Created:LessThan', $since);
-			echo "Deleting " . $list->count() . " captured emails (if ?confirm get var is set)<br/>\n";
+    public function run($request) {
+        if (Permission::check('ADMIN')) {
+            $since = date('Y-m-d H:i:s', strtotime('-1 month'));
+            $list = CapturedEmail::get()->filter('Created:LessThan', $since);
+            echo "Deleting " . $list->count() . " captured emails (if ?confirm get var is set)<br/>\n";
 
-			if ($request->getVar('confirm')) {
-				$list->removeAll();
-			}
-		}
-	}
+            if ($request->getVar('confirm')) {
+                $list->removeAll();
+            }
+        }
+    }
 }

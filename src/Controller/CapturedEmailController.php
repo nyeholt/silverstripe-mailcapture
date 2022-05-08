@@ -15,22 +15,22 @@ use Symbiote\MailCapture\Model\CapturedEmail;
  */
 class CapturedEmailController extends Controller implements PermissionProvider {
 
-	private static $allowed_actions = array('view' => 'CMS_ACCESS_MailCaptureAdmin');
+    private static $allowed_actions = array('view' => 'CMS_ACCESS_MailCaptureAdmin');
 
     public function providePermissions(){
-		return array(
-			'CMS_ACCESS_MailCaptureAdmin' => 'View MailCapture records'
-		);
-	}
+        return array(
+            'CMS_ACCESS_MailCaptureAdmin' => 'View MailCapture records'
+        );
+    }
 
-	public function view() {
-		$id = (int) $this->getRequest()->param('ID');
+    public function view() {
+        $id = (int) $this->getRequest()->param('ID');
 
-		if ($id) {
-			$email = CapturedEmail::get()->byID($id);
-			if ($email) {
-				return array('Email' => $email);
-			}
-		}
-	}
+        if ($id) {
+            $email = CapturedEmail::get()->byID($id);
+            if ($email) {
+                return array('Email' => $email);
+            }
+        }
+    }
 }
