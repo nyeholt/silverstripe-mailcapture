@@ -3,28 +3,33 @@
 namespace Symbiote\MailCapture\tests;
 
 use SilverStripe\Control\Email\Email;
+use SilverStripe\Control\Email\Mailer;
 use SilverStripe\Core\Injector\Injector;
 use SilverStripe\Dev\SapphireTest;
-use Symbiote\MailCapture\Control\Email\CaptureMailer;
+use Symbiote\MailCapture\Email\CaptureMailer;
 use Symbiote\MailCapture\Model\CapturedEmail;
 
 class MailcaptureTest extends SapphireTest
 {
     protected $usesDatabase = true;
+    protected $originalMailer = '';
 
     public function setUp()
     {
         parent::setUp();
+        $this->originalMailer = Mailer::class;
+        Injector::inst()->registerService(CaptureMailer::class, 'Mailer');
+    }
 
-        // parent::setUp() overrides with TestMailer, so lets put the
-        // original back.
-
+    public function tearDown()
+    {
         Injector::inst()->registerService($this->originalMailer, 'Mailer');
+        parent::tearDown();
     }
 
     public function testCaptureMail()
     {
-        $mailer = Email::mailer();
+        $mailer = Mailer::class;
         $this->assertTrue($mailer instanceof CaptureMailer);
 
         $capturedCount = CapturedEmail::get()->count();
