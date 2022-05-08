@@ -11,14 +11,21 @@ use Symbiote\MailCapture\Model\CapturedEmail;
  * @author marcus@silverstripe.com.au
  * @license BSD License http://silverstripe.org/bsd-license/
  */
-class CaptureMailer extends SwiftMailer {
+class CaptureMailer extends SwiftMailer
+{
 
     /**
      * Do we capture emails in the system?
      *
      * @var boolean
      */
-    public $recordEmails = true;
+    protected $recordEmails = true;
+
+    /**
+     * do we send out emails for real?
+     * @var bool
+     */
+    protected $sendMailOutbound = true;
 
     /**
      * Mailer or a sub-class of Mailer that can be used for sending the captured emails
@@ -26,6 +33,7 @@ class CaptureMailer extends SwiftMailer {
      * @var Object
      */
     public $outboundMailer;
+
 
     protected $send;
 

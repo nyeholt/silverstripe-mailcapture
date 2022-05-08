@@ -6,7 +6,9 @@ use SilverStripe\Control\Controller;
 use SilverStripe\Forms\GridField\GridField_ColumnProvider;
 use SilverStripe\View\ArrayData;
 
-class ViewEmailButton implements GridField_ColumnProvider {
+class ViewEmailButton implements GridField_ColumnProvider
+{
+
     public function augmentColumns($field, &$cols) {
         if(!in_array('Actions', $cols)) $cols[] = 'Actions';
     }
@@ -32,4 +34,5 @@ class ViewEmailButton implements GridField_ColumnProvider {
     public function getColumnMetadata($gridField, $col) {
         return array('title' => null);
     }
+
 }
