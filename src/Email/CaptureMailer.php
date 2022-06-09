@@ -14,6 +14,11 @@ use Symbiote\MailCapture\Model\CapturedEmail;
 class CaptureMailer extends SwiftMailer
 {
 
+
+    public function setRecordEmails(bool $bool)
+    {
+        $this->recordEmails = $bool;
+    }
     /**
      * Do we capture emails in the system?
      *
