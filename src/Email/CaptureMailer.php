@@ -19,6 +19,12 @@ class CaptureMailer extends SwiftMailer
     {
         $this->recordEmails = $bool;
     }
+
+    public function setSendMailOutbound(bool $bool)
+    {
+        $this->sendMailOutbound = $bool;
+    }
+
     /**
      * Do we capture emails in the system?
      *
