@@ -70,7 +70,7 @@ class CaptureMailer extends SwiftMailer
                     }
                     $return .= ", ";
                 }
-                return $return;
+                return trim(trim($return, ','));
             };
 
             $mail = CapturedEmail::create();
