@@ -105,6 +105,11 @@ class CapturedEmail extends DataObject
         return $fields;
     }
 
+    public function canCreate($member = null, $context = [])
+    {
+        return false;
+    }
+
     private function makeLinksClickable( string $text ) : string
     {
     	$text = preg_replace(
