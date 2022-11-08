@@ -21,13 +21,13 @@ class CapturedEmail extends DataObject
     private static $table_name = 'CapturedEmail';
 
     private static $db = array(
-        'To'            => 'Varchar(128)',
+        'To'              => 'Varchar(128)',
         'From'            => 'Varchar(128)',
-        'Subject'        => 'Varchar(128)',
-        'Headers'        => 'Text',
-        'Content'        => 'Text',
-        'PlainText'        => 'Text',
-        'Success'       => 'Boolean',
+        'Subject'         => 'Varchar(128)',
+        'Headers'         => 'Text',
+        'Content'         => 'Text',
+        'PlainText'       => 'Text',
+        'Success'         => 'Boolean',
     );
 
     private static $has_one = array(
@@ -144,5 +144,11 @@ class CapturedEmail extends DataObject
     	return substr($ret, 1);
 
     }
+    
+
+    public function canCreate($member = null, $context = [])
+    {
+        return false;
+    }    
 
 }
