@@ -144,11 +144,7 @@ class CapturedEmail extends DataObject
     	return substr($ret, 1);
 
     }
-    
 
-    public function canCreate($member = null, $context = [])
-    {
-        return false;
-    }    
+
 
 }
