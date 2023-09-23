@@ -2,9 +2,8 @@
 Name: mailcapture
 After: emailconfig
 ---
-
 SilverStripe\Core\Injector\Injector:
-  SilverStripe\Control\Email\Mailer:
+  SilverStripe\Control\Email\Email:
     class: Symbiote\MailCapture\Control\Email\CaptureMailer
     properties:
       # Set to FALSE to enable pass through of emails without logging

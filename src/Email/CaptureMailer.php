@@ -1,9 +1,15 @@
 <?php
 
-namespace Symbiote\MailCapture\Control\Email;
+namespace Symbiote\MailCapture\Email;
+
+use SilverStripe\Control\Email\Email;
+use Symfony\Component\Mailer\Mailer;
 
 use SilverStripe\Control\Email\SwiftMailer;
+use SilverStripe\Core\Extension;
 use Symbiote\MailCapture\Model\CapturedEmail;
+use Symfony\Component\Mailer\Envelope;
+use Symfony\Component\Mime\Rawowner;
 
 /**
  * A mailer that can be used to capture emails instead of sending them out
@@ -11,10 +17,8 @@ use Symbiote\MailCapture\Model\CapturedEmail;
  * @author marcus@silverstripe.com.au
  * @license BSD License http://silverstripe.org/bsd-license/
  */
-class CaptureMailer extends SwiftMailer
+class CaptureMailer extends Extension
 {
-
-
     public function setRecordEmails(bool $bool)
     {
         $this->recordEmails = $bool;
@@ -38,81 +42,25 @@ class CaptureMailer extends SwiftMailer
      */
     protected $sendMailOutbound = true;
 
-    /**
-     * Mailer or a sub-class of Mailer that can be used for sending the captured emails
-     *
-     * @var Object
-     */
-    public $outboundMailer;
-
 
     protected $send;
 
-    public function setMassMailSend($item) {
+    public function setMassMailSend($item)
+    {
         $this->send = $item;
     }
 
     /**
-     * @param \SilverStripe\Control\Email\Email $message
-     * @return bool Whether the sending was "successful" or not
+     * Undocumented function
+     *
+     * @param ViewableData $data
+     * @return void
      */
-    public function send($message)
+    public function updateGetData($data): void
     {
         if ($this->recordEmails) {
-
-            $formatEmailAddress = function (array $emails): string
-            {
-                $return = '';
-                foreach ($emails as $address => $title) {
-                    $return .= "$address";
-                    if ($title) {
-                        $return .= " <$title>";
-                    }
-                    $return .= ", ";
-                }
-                return trim(trim(trim($return), ','));
-            };
-
-            $mail = CapturedEmail::create();
-            $mail->To = $formatEmailAddress($message->getTo());
-            $mail->From = $formatEmailAddress($message->getFrom());
-            $mail->ReplyTo = $message->getReplyTo();
-            $mail->Subject = $message->getSubject();
-            $mail->Headers = $message->getSwiftMessage()->getHeaders()->toString();
-
-            // Ensure we can at least render template if any
-            $htmlTemplate = $message->getHTMLTemplate();
-            $plainTemplate = $message->getPlainTemplate();
-
-            $plainContent = $htmlContent = '';
-            // use html content with html template
-            if ($htmlTemplate) {
-                $htmlContent = $message->renderWith($htmlTemplate);
-                $mail->Content = html_entity_decode($htmlContent);
-            }
-            // use plain content with plain template
-            elseif ($plainTemplate) {
-                $plainContent = $message->renderWith($plainTemplate);
-                $mail->PlainText = $plainContent;
-            }
-            // default to same behaviour a prior to above implementation for templates so
-            // as to not be a breaking change. We should probably decode this in the future.
-            else {
-                $mail->Content = $message->getBody();
-            }
-
-            if ($this->send) {
-                $mail->SendID = $this->send->ID;
-            }
+            $owner = $this->getOwner();
+            $mail = CapturedEmail::record_email($owner);
         }
-        $success = false;
-        if ($this->sendMailOutbound) {
-            $success = parent::send($message);
-        }
-        if ($this->recordEmails) {
-            $mail->Success = $success;
-            $mail->write();
-        }
-        return true;
     }
 }
