@@ -1,31 +1,31 @@
 <?php
 
-namespace Symbiote\MailCapture\Controller;
+namespace Sunnysideup\MailCapture\Controller;
 
 use SilverStripe\Admin\ModelAdmin;
-use Symbiote\MailCapture\Form\ViewEmailButton;
-use Symbiote\MailCapture\Model\CapturedEmail;
-use Symbiote\MailCapture\Model\MassMailSend;
+use Sunnysideup\MailCapture\Form\ViewEmailButton;
+use Sunnysideup\MailCapture\Model\CapturedEmail;
 
 /**
  * @author marcus@silverstripe.com.au
  * @license BSD License http://silverstripe.org/bsd-license/
  */
-class MailCaptureAdmin extends ModelAdmin {
-
-    private static $url_segment = 'mailcapture';
+class MailCaptureAdmin extends ModelAdmin
+{
     private static $menu_title = 'Email Logs';
+    private static $url_segment = 'emaillogs';
     private static $managed_models = array(
         CapturedEmail::class,
-        MassMailSend::class,
     );
 
-    public function init() {
+    public function init()
+    {
         parent::init();
         $this->showImportForm = false;
     }
 
-    public function getEditForm($id = null, $fields = null) {
+    public function getEditForm($id = null, $fields = null)
+    {
         $form = parent::getEditForm($id, $fields);
 
         if ($this->modelClass == CapturedEmail::class) {

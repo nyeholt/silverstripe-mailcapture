@@ -1,13 +1,13 @@
 <?php
 
-namespace Symbiote\MailCapture\Email;
+namespace Sunnysideup\MailCapture\Email;
 
 use SilverStripe\Control\Email\Email;
 use Symfony\Component\Mailer\Mailer;
 
 use SilverStripe\Control\Email\SwiftMailer;
 use SilverStripe\Core\Extension;
-use Symbiote\MailCapture\Model\CapturedEmail;
+use Sunnysideup\MailCapture\Model\CapturedEmail;
 use Symfony\Component\Mailer\Envelope;
 use Symfony\Component\Mime\Rawowner;
 
@@ -44,11 +44,6 @@ class CaptureMailer extends Extension
 
 
     protected $send;
-
-    public function setMassMailSend($item)
-    {
-        $this->send = $item;
-    }
 
     /**
      * Undocumented function

@@ -1,13 +1,13 @@
 <?php
 
-namespace Symbiote\MailCapture\tests;
+namespace Sunnysideup\MailCapture\tests;
 
 use SilverStripe\Control\Email\Email;
 use SilverStripe\Control\Email\Mailer;
 use SilverStripe\Core\Injector\Injector;
 use SilverStripe\Dev\SapphireTest;
-use Symbiote\MailCapture\Email\CaptureMailer;
-use Symbiote\MailCapture\Model\CapturedEmail;
+use Sunnysideup\MailCapture\Email\CaptureMailer;
+use Sunnysideup\MailCapture\Model\CapturedEmail;
 
 class MailcaptureTest extends SapphireTest
 {
@@ -39,7 +39,7 @@ class MailcaptureTest extends SapphireTest
         $subject = "Test Capture Mail";
         $body = "Test body.";
 
-        $email = Email::create($from , $to, $subject, $body);
+        $email = Email::create($from, $to, $subject, $body);
         $email->send();
 
         // Should capture 1 email

@@ -1,10 +1,10 @@
 <?php
 
-namespace Symbiote\MailCapture\BuildTask;
+namespace Sunnysideup\MailCapture\BuildTask;
 
 use SilverStripe\Dev\BuildTask;
 use SilverStripe\Security\Permission;
-use Symbiote\MailCapture\Model\CapturedEmail;
+use Sunnysideup\MailCapture\Model\CapturedEmail;
 
 /**
  * @author <marcus@silverstripe.com.au>
@@ -12,7 +12,8 @@ use Symbiote\MailCapture\Model\CapturedEmail;
  */
 class PruneEmailsTask extends BuildTask
 {
-    public function run($request) {
+    public function run($request)
+    {
         if (Permission::check('ADMIN')) {
             $since = date('Y-m-d H:i:s', strtotime('-1 month'));
             $list = CapturedEmail::get()->filter('Created:LessThan', $since);

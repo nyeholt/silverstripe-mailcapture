@@ -1,0 +1,3 @@
+mappings:
+  CapturedEmail: Sunnysideup\MailCapture\Model\CapturedEmail
+  SunnysideupMailSend: Sunnysideup\MailCapture\Model\SunnysideupMailSend

@@ -1,6 +1,6 @@
 <?php
 
-namespace Symbiote\MailCapture\Model;
+namespace Sunnysideup\MailCapture\Model;
 
 use SilverStripe\Control\Email\Email;
 use SilverStripe\Core\Convert;
@@ -11,7 +11,6 @@ use SilverStripe\Security\Permission;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\ReadonlyField;
 use SilverStripe\Security\Security;
-use Symbiote\MailCapture\Model\MassMailSend;
 
 /**
  * @author marcus@silverstripe.com.au

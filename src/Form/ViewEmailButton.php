@@ -1,6 +1,6 @@
 <?php
 
-namespace Symbiote\MailCapture\Form;
+namespace Sunnysideup\MailCapture\Form;
 
 use SilverStripe\Control\Controller;
 use SilverStripe\Forms\GridField\GridField_ColumnProvider;
@@ -8,16 +8,20 @@ use SilverStripe\View\ArrayData;
 
 class ViewEmailButton implements GridField_ColumnProvider
 {
-
-    public function augmentColumns($field, &$cols) {
-        if(!in_array('Actions', $cols)) $cols[] = 'Actions';
+    public function augmentColumns($field, &$cols)
+    {
+        if(!in_array('Actions', $cols)) {
+            $cols[] = 'Actions';
+        }
     }
 
-    public function getColumnsHandled($field) {
+    public function getColumnsHandled($field)
+    {
         return array('Actions');
     }
 
-    public function getColumnContent($field, $record, $col) {
+    public function getColumnContent($field, $record, $col)
+    {
         if($record->canView()) {
             $data = new ArrayData(array(
                 'Link' => Controller::join_links('CapturedEmailController', 'view', $record->ID)
@@ -27,11 +31,13 @@ class ViewEmailButton implements GridField_ColumnProvider
         return '';
     }
 
-    public function getColumnAttributes($field, $record, $col) {
+    public function getColumnAttributes($field, $record, $col)
+    {
         return array('class' => 'col-buttons');
     }
 
-    public function getColumnMetadata($gridField, $col) {
+    public function getColumnMetadata($gridField, $col)
+    {
         return array('title' => null);
     }
 

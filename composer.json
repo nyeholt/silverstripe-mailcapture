@@ -1,5 +1,5 @@
 {
-    "name": "symbiote/silverstripe-mailcapture",
+    "name": "Sunnysideup/silverstripe-mailcapture",
     "description": "A module for development/staging systems that capture email within the repository instead of actually sending to a user. These emails can then be browsed within the CMS.",
     "type": "silverstripe-vendormodule",
     "keywords": ["silverstripe", "email", "mail"],
@@ -7,11 +7,11 @@
     "authors": [
         {
             "name": "Marcus Nyeholt",
-            "email": "marcus@symbiote.com.au"
+            "email": "marcus@Sunnysideup.com.au"
         },
         {
             "name": "Stephen McMahon",
-            "email": "stephen@symbiote.com.au"
+            "email": "stephen@Sunnysideup.com.au"
         }
     ],
     "require": {
@@ -24,7 +24,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Symbiote\\MailCapture\\": "src/"
+            "Sunnysideup\\MailCapture\\": "src/"
         }
     }
 }

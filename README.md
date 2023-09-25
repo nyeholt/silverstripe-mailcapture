@@ -19,7 +19,7 @@ after: mailcapture
 ---
 SilverStripe\Core\Injector\Injector:
   SilverStripe\Control\Email\Mailer:
-    class: Symbiote\MailCapture\Control\Email\CaptureMailer
+    class: Sunnysideup\MailCapture\Control\Email\CaptureMailer
     properties:
      # Set to FALSE to enable pass through of emails without logging
       recordEmails: TRUE
@@ -29,14 +29,14 @@ SilverStripe\Core\Injector\Injector:
 
 ## Composer Install
 
-**[SilverStripe 3.X](https://github.com/symbiote/silverstripe-mailcapture/tree/2)**
+**[SilverStripe 3.X](https://github.com/Sunnysideup/silverstripe-mailcapture/tree/2)**
 ```
-composer require symbiote/silverstripe-mailcapture:~2.0
+composer require Sunnysideup/silverstripe-mailcapture:~2.0
 ```
 
-**[SilverStripe 4.X](https://github.com/symbiote/silverstripe-mailcapture/tree/master)**
+**[SilverStripe 4.X](https://github.com/Sunnysideup/silverstripe-mailcapture/tree/master)**
 ```
-composer require symbiote/silverstripe-mailcapture:~3.0
+composer require Sunnysideup/silverstripe-mailcapture:~3.0
 ```
 
 ## Requirements
@@ -75,7 +75,7 @@ after: mailcapture
 ---
 SilverStripe\Core\Injector\Injector:
   SilverStripe\Control\Email\Mailer:
-    class: Symbiote\MailCapture\Control\Email\CaptureMailer
+    class: Sunnysideup\MailCapture\Control\Email\CaptureMailer
     properties:
      # Set to FALSE to enable pass through of emails without logging
       recordEmails: TRUE
