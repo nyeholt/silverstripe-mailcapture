@@ -126,6 +126,11 @@ class CapturedEmail extends DataObject
         return false;
     }
 
+    public function canCreate($member = null, $context = [])
+    {
+        return false;
+    }
+
     public function getCMSFields()
     {
         $fields = parent::getCMSFields();
@@ -156,10 +161,6 @@ class CapturedEmail extends DataObject
         return $fields;
     }
 
-    public function canCreate($member = null, $context = [])
-    {
-        return false;
-    }
 
     private function makeLinksClickable(string $text): string
     {
