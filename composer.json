@@ -1,30 +1,34 @@
 {
-    "name": "Sunnysideup/silverstripe-mailcapture",
-    "description": "A module for development/staging systems that capture email within the repository instead of actually sending to a user. These emails can then be browsed within the CMS.",
-    "type": "silverstripe-vendormodule",
-    "keywords": ["silverstripe", "email", "mail"],
-    "license": "BSD-3-Clause",
-    "authors": [
-        {
-            "name": "Marcus Nyeholt",
-            "email": "marcus@Sunnysideup.com.au"
-        },
-        {
-            "name": "Stephen McMahon",
-            "email": "stephen@Sunnysideup.com.au"
-        }
-    ],
-    "require": {
-        "silverstripe/framework": "~4.0 || ~5.0"
+  "name": "sunnysideup/silverstripe-mailcapture",
+  "description": "Capture emails being sent",
+  "type": "silverstripe-vendormodule",
+  "keywords": [
+    "silverstripe",
+    "email",
+    "mail"
+  ],
+  "license": "BSD-3-Clause",
+  "authors": [
+    {
+      "name": "Marcus Nyeholt",
+      "email": "marcus@symbiote.com.au"
     },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "3.0.x-dev"
-        }
-    },
-    "autoload": {
-        "psr-4": {
-            "Sunnysideup\\MailCapture\\": "src/"
-        }
+    {
+      "name": "Stephen McMahon",
+      "email": "stephen@symbiote.com.au"
     }
+  ],
+  "require": {
+    "silverstripe/framework": "~5.0"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "3.0.x-dev"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Sunnysideup\\MailCapture\\": "src/"
+    }
+  }
 }
